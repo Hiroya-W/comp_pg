@@ -1,4 +1,4 @@
-// https://qiita.com/tanakh/items/0ba42c7ca36cd29d0ac8
+// https://qiita.com/tanakh/items/0ba42c7ca36cd29d0ac8O
 macro_rules! input {
     (source = $s:expr, $($r:tt)*) => {
         let mut iter = $s.split_whitespace();
@@ -63,26 +63,31 @@ macro_rules! read_value {
     };
 }
 
-fn main() {
+fn solve_A(){
+    input!(
+        K : i32,
+        X : i32,
+    );
+    println!("{}", if K * 500 >= X{ "Yes" } else { "No" });
+}
+
+fn solve_B(){
     input!(
         N : usize,
-        arr : [usize;N],
+        S : String,
     );
-
     let N : usize = N;
-    let mut serch = 1;
-    let mut ans :i32 = 0;
-    for i in 0..N{
-        if arr[i] == serch{
-            serch += 1;
-        }
-        else {
-            ans += 1;
+    let mut con = 0;
+    for i in 0..N-2{
+        let ch = &S[i..i+3];
+        if ch == "ABC"{
+            con += 1;
         }
     }
-    if ans == N as i32{
-        ans = -1;
-    }
-    println!("{}",ans);
-
+    println!("{}",con.to_string());
 }
+
+fn main(){
+    solve_A();
+}
+
