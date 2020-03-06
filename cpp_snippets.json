@@ -1,0 +1,39 @@
+{
+    // Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+    // same ids are connected.
+    // Example:
+    // "Print to console": {
+    // 	"prefix": "log",
+    // 	"body": [
+    // 		"console.log('$1');",
+    // 		"$2"
+    // 	],
+    // 	"description": "Log output to console"
+    // }
+    "UnionFind": {
+        "prefix": "unionfind",
+        "body": [
+            "struct UnionFind {",
+            "\tvector<int> d;",
+            "\tUnionFind(int n): d(n,-1) {}",
+            "\tint find(int x) {",
+            "\t\tif (d[x] < 0) return x;",
+            "\t\treturn d[x] = find(d[x]);",
+            "\t}",
+            "\tbool unite(int x, int y) {",
+            "\t\tx = find(x); y = find(y);",
+            "\t\tif (x == y) return false;",
+            "\t\tif (d[x] > d[y]) swap(x,y);",
+            "\t\td[x] += d[y];",
+            "\t\td[y] = x;",
+            "\t\treturn true;",
+            "\t}",
+            "\tbool same(int x, int y) { return find(x) == find(y);}",
+            "\tint size(int x) { return -d[find(x)];}",
+            "};"
+        ],
+        "description": "impl UnionFind"
+    }
+}
