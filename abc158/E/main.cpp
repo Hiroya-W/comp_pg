@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define EPS (1e-7)
+#define INF (1e9)
+#define PI (acos(-1))
+
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+
+void solve(long long N, long long P, string S)
+{
+    return;
+}
+
+int main()
+{
+    long long N;
+    scanf("%lld", &N);
+    long long P;
+    scanf("%lld", &P);
+
+    string S;
+    cin >> S;
+    solve(N, P, S);
+    return 0;
+}
