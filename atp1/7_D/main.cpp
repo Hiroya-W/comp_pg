@@ -11,6 +11,7 @@ int main()
 {
     int n, m, l;
     cin >> n >> m >> l;
+
     int a[n][m] = {};
     int b[m][l] = {};
 
