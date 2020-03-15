@@ -25,13 +25,11 @@ void solve(long long H, long long W)
         }
         if (W % 2 == 0 && H % 2 == 1)
         {
-            long long num = W * (H / 2) + W / 2;
-            cout << num << endl;
+            cout << W * (H / 2) + W / 2 << endl;
         }
         if (W % 2 == 1 && H % 2 == 1)
         {
-            int num = W * (H / 2) + W / 2 + 1;
-            cout << num << endl;
+            cout << W * (H / 2) + W / 2 + 1 << endl;
         }
     }
 }

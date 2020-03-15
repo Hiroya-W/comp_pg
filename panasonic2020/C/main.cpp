@@ -12,30 +12,16 @@ const string NO = "No";
 
 void solve(long long a, long long b, long long c)
 {
-    if (abs(a - c) > abs(b - c))
+    if (c - a - b > 0)
     {
-        // a < b -c
-        long long temp = a;
-        a = b;
-        b = temp;
-    }
-
-    double d = sqrt(a);
-    double e = sqrt(b);
-    double f = sqrt(c);
-    double ef;
-    if (abs(e) < abs(f))
-    {
-        ef = f - e;
-    }
-    else
-    {
-        ef = -e + f;
-    }
-
-    if (d < ef)
-    {
-        cout << "Yes" << endl;
+        if (4 * a * b < (c - a - b) * (c - a - b))
+        {
+            cout << "Yes" << endl;
+        }
+        else
+        {
+            cout << "No" << endl;
+        }
     }
     else
     {
