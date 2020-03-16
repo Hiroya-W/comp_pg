@@ -7,6 +7,8 @@ using namespace std;
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
 
+typedef long long ll;
+
 {% if mod %}
 const long long MOD = {{ mod }};
 {% endif %}
