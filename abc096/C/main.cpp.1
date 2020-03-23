@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+#define EPS (1e-7)
+#define INF (1e9)
+#define PI (acos(-1))
+
+#define rep(i, n) for (int i = 0; i < (int)(n); i++)
+
+typedef long long ll;
+
+const string YES = "Yes";
+const string NO = "No";
+
+int count_connect(vector<vector<char>> field, vector<vector<bool>> table, int i,
+                  int j)
+{
+    int count = 0;
+    table[i][j] = true;
+    if (field[i][j] == '#')
+    {
+        count++;
+        count += count_connect(field, table, i, j + 1);
+        count += count_connect(field, table, i, j - 1);
+        count += count_connect(field, table, i + 1, j);
+        count += count_connect(field, table, i - 1, j);
+    }
+    return count;
+}
+
+void solve(long long H, long long W, vector<vector<char>> field)
+{
+    string ans = YES;
+    vector<vector<bool>> table(H, vector<bool>(W));
+    rep(i, H)
+    {
+        rep(j, W)
+        {
+            // 未チェックなら
+            if (table[i][j] == false)
+            {
+                if (field[i][j] == '#')
+                {
+                    int count = 0;
+                    count += count_connect(field, table, i, j);
+                    if (count < 2)
+                    {
+                        ans = NO;
+                    }
+                }
+                else
+                {
+                    table[i][j] == true;
+                }
+            }
+        }
+    }
+    cout << ans << endl;
+}
+
+int main()
+{
+    long long H;
+    scanf("%lld", &H);
+    long long W;
+    scanf("%lld", &W);
+    vector<vector<char>> field(H, vector<char>(W));
+    for (int i = 0; i < H; i++)
+    {
+        string str;
+        cin >> str;
+        for (int j = 0; j < str.length(); j++)
+            field[i][j] = str[j];
+    }
+    solve(H, W, move(field));
+    return 0;
+}
