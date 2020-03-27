@@ -11,6 +11,8 @@ typedef long long ll;
 
 int main()
 {
-    cout << "Hello World" << endl;
+    int a, b;
+    cin >> a >> b;
+    cout << pow(a, b) << endl;
     return 0;
 }
