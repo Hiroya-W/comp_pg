@@ -14,6 +14,10 @@ typedef long long ll;
 void solve(long long X, long long Y, long long Z)
 {
     cout << Z << " " << X << " " << Y << endl;
+    if(X < Y )
+    {
+        cout<<"YES"<<endl;
+    }
 }
 
 int main()
