@@ -11,22 +11,25 @@ using namespace std;
 
 typedef long long ll;
 
-void solve(long long N, std::vector<long long> d) {
-  sort(d.begin(), d.end());
-  if (d[N / 2] - d[N / 2 - 1] == 0) {
-    cout << "0" << endl;
-  } else {
-    cout << d[N / 2] - d[N / 2 - 1] << endl;
+void solve(long long N, long long L) {
+  int tmp = 0;
+  long long apple = INF;
+  int tot = 0;
+  rep(i, N) {
+    tot += L + i;
+    if (apple > abs(L + i)) {
+      apple = abs(L + i);
+      tmp = L + i;
+    }
   }
+  cout << tot - tmp << endl;
 }
 
 int main() {
   long long N;
   scanf("%lld", &N);
-  std::vector<long long> d(N);
-  for (int i = 0; i < N; i++) {
-    scanf("%lld", &d[i]);
-  }
-  solve(N, std::move(d));
+  long long L;
+  scanf("%lld", &L);
+  solve(N, L);
   return 0;
 }

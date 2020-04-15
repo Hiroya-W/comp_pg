@@ -12,20 +12,7 @@ using namespace std;
 typedef long long ll;
 
 void solve(long long N, long long D, std::vector<std::vector<long long>> X) {
-  int ans = 0;
-  for (int i = 0; i < N; i++) {
-    for (int j = i + 1; j < N; j++) {
-      double dis = 0;
-      for (int k = 0; k < D; k++) {
-        dis += (double)(X[i][k] - X[j][k]) * (X[i][k] - X[j][k]);
-      }
-      dis = sqrt(dis);
-      if (abs(dis - (int)dis) < EPS) {
-        ans++;
-      }
-    }
-  }
-  cout << ans << endl;
+  rep(i, N) {}
 }
 
 int main() {
