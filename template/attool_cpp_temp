@@ -8,6 +8,10 @@ using namespace std;
 #define rad_to_deg(rad) (((rad) / 2 / M_PI) * 360)
 
 #define rep(i, n) for (int i = 0; i < (int)(n); i++)
+#define rep1(i, n) for (int i = 1; i < (int)(n); i++)
+
+int dx[4] = {1, 0, -1, 0};
+int dy[4] = {0, 1, 0, -1};
 
 typedef long long ll;
 
