@@ -1,4 +1,8 @@
 #include <bits/stdc++.h>
+
+#include <algorithm>
+#include <utility>
+#include <vector>
 using namespace std;
 
 #define EPS (1e-7)
@@ -11,33 +15,20 @@ using namespace std;
 
 typedef long long ll;
 
-const string YES = "Yes";
-const string NO = "No";
-
-void solve(ll N, vector<pair<ll, ll>> A) {
-    ll time = 0;
+void solve(ll N, vector<pair<pair<string, ll>, ll>> A) {
     sort(A.begin(), A.end());
-    for (auto i : A) {
-        time += i.second;
-        if (time > i.first) {
-            cout << NO << endl;
-            return;
-            ;
-        }
-    }
-    cout << YES << endl;
+    rep(i, N) { cout << A[i].second << endl; }
 }
 
 int main() {
     long long N;
     scanf("%lld", &N);
-    vector<pair<ll, ll>> A(N);
+    vector<pair<pair<string, ll>, ll>> A(N);
     for (int i = 0; i < N; i++) {
-        ll B, C;
-        scanf("%lld", &B);
-        scanf("%lld", &C);
-        A[i].first = C;
-        A[i].second = B;
+        string S;
+        ll P;
+        cin >> S >> P;
+        A[i] = make_pair(make_pair(S, -P), i + 1);
     }
     solve(N, move(A));
     return 0;
