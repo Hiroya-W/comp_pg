@@ -15,21 +15,19 @@ int dy[4] = {0, 1, 0, -1};
 
 typedef long long ll;
 
-
-void solve(long long S, long long W){
-    if(W>=S){
-        cout << "unsafe"<<endl;
-    }
-    else{
-        cout << "safe"<<endl;
+void solve(long long S, long long W) {
+    if (W >= S) {
+        cout << "unsafe" << endl;
+    } else {
+        cout << "safe" << endl;
     }
 }
 
-int main(){
+int main() {
     long long S;
-    scanf("%lld",&S);
+    scanf("%lld", &S);
     long long W;
-    scanf("%lld",&W);
+    scanf("%lld", &W);
     solve(S, W);
     return 0;
 }
