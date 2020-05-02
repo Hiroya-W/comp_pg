@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+
+#include <vector>
 using namespace std;
 
 #define EPS (1e-7)
@@ -11,83 +13,34 @@ using namespace std;
 
 typedef long long ll;
 
-bool isLunlun(long long num)
-{
-    long long temp1 = num % 10;
-    num /= 10;
-    while (num != 0)
-    {
-        long long temp2 = num % 10;
-        if (abs(temp1 - temp2) > 1)
-        {
-            return false;
-        }
-        temp1 = temp2;
-        num /= 10;
+void solve(long long K) {
+    vector<ll> a;
+    for (int i = 1; i <= 9; i++) {
+        a.push_back(i);
     }
-    return true;
-}
 
-void solve(long long K)
-{
-    long long count = 0;
-    long long temp = 1;
-    while (count != K)
-    {
-        // tempがlunlunかチェックする
-        long long temp1 = temp;
-        long long mod = temp1 % 10;
-        temp1 /= 10;
-        int keta = 1;
-        bool chk = true;
-        while (temp1 != 0)
-        {
-            long long mod2 = temp1 % 10;
-            if (abs(mod - mod2) <= 1)
-            {
-                temp1 /= 10;
-                mod = mod2;
-                keta++;
-            }
-            else
-            {
-                chk = false;
-                break;
-            }
+    while (1) {
+        if (K <= a.size()) {
+            cout << a[K - 1] << endl;
+            return;
         }
-        if (chk)
-        {
-            count++;
-            if (count == K)
-            {
-                cout << temp << endl;
-                return;
-            }
-            temp++;
-        }
-        else
-        {
-            if (temp1 % 10 == 9)
-            {
-                temp = temp1 * 10 * keta;
-            }
-            else
-            {
-                temp = temp1 * 10 * keta + 10 * keta;
-            }
-            int mod = temp1 + 1;
-            while (keta > 0)
-            {
-                keta--;
-                mod = mod - 1 >= 0 ? mod - 1 : 0;
-                temp += pow(10, keta) * mod;
+        K -= a.size();
+        vector<ll> old;
+        swap(old, a);
+        for (ll x : old) {
+            for (int i = -1; i <= 1; i++) {
+                int d = x % 10 + i;
+                if (d < 0 || d > 9) {
+                    continue;
+                }
+                ll nx = x * 10 + d;
+                a.push_back(nx);
             }
         }
     }
 }
 
-int main()
-{
+int main() {
     long long K;
     scanf("%lld", &K);
     solve(K);
