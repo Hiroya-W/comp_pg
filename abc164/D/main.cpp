@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+
+#include <string>
+#include <vector>
 using namespace std;
 
 #define EPS (1e-7)
@@ -15,14 +18,28 @@ int dy[4] = {0, 1, 0, -1};
 
 typedef long long ll;
 
+int main() {
+    string S;
+    cin >> S;
 
-void solve(long long S){
+    int P = 2019;
+    int N = S.size();
+    vector<int> d(N + 1);
+    int count = 1;
+    for (int i = N - 1; 0 <= i; i--) {
+        int a = (S[i] - '0') * count % P;
+        d[i] = (d[i + 1] + a) % P;
+        count *= 10;
+        count %= P;
+    }
 
-}
+    vector<int> sum(P);
+    ll ans = 0;
+    for (int i = N; 0 <= i; i--) {
+        ans += sum[d[i]];
+        sum[d[i]]++;
+    }
+    cout << ans << endl;
 
-int main(){
-    long long S;
-    scanf("%lld",&S);
-    solve(S);
     return 0;
 }
