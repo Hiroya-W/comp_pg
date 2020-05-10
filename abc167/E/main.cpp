@@ -1,7 +1,4 @@
 #include <bits/stdc++.h>
-
-#include <map>
-#include <vector>
 using namespace std;
 
 #define EPS (1e-7)
@@ -18,19 +15,19 @@ int dy[4] = {0, 1, 0, -1};
 
 typedef long long ll;
 
-int main() {
-    int N;
-    cin >> N;
-    vector<int> A(N);
-    map<int, int> mp;
-    rep(i, N) cin >> A[i];
+const long long MOD = 998244353;
 
-    ll ans = 0;
-    rep(j, N) {
-        ans += mp[j - A[j]];
-        mp[A[j] + j]++;
-    }
-    cout << ans << endl;
+void solve(long long N, long long M, long long K){
 
+}
+
+int main(){
+    long long N;
+    scanf("%lld",&N);
+    long long M;
+    scanf("%lld",&M);
+    long long K;
+    scanf("%lld",&K);
+    solve(N, M, K);
     return 0;
 }

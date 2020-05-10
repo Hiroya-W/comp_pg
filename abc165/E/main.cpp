@@ -1,4 +1,7 @@
 #include <bits/stdc++.h>
+
+#include <cstdio>
+#include <vector>
 using namespace std;
 
 #define EPS (1e-7)
@@ -16,16 +19,22 @@ int dy[4] = {0, 1, 0, -1};
 typedef long long ll;
 
 void solve(long long N, long long M) {
-    ll c = N / 2;
-    for (int i = 0; i < M; i++) {
-        if (i == M - 1) {
-            if (N == M * 2 + 1) {
-                cout << c - i << " " << c + i + 2 << endl;
-                continue;
-            }
+    vector<pair<int, int>> ans;
+    if (N % 2 == 1) {
+        for (int l = 1, r = N - 1; l < r; l++, r--) {
+            ans.emplace_back(l, r);
         }
-        cout << c - i << " " << c + i + 1 << endl;
+    } else {
+        bool flag = false;
+        for (int l = 1, r = N - 1; l < r; l++, r--) {
+            if (!flag && r - l <= N / 2) {
+                r--;
+                flag = true;
+            }
+            ans.emplace_back(l, r);
+        }
     }
+    rep(i, M) { printf("%d %d\n", ans[i].first, ans[i].second); }
 }
 
 int main() {
