@@ -17,40 +17,32 @@ int dy[4] = {0, 1, 0, -1};
 
 typedef long long ll;
 
+const int D = 60;
+const int MAX_N = 200005;
+int to[D][MAX_N];
+
 int main() {
     int N;
     ll K;
     cin >> N >> K;
-    vector<int> A(N);
-    vector<int> visited(N);
     rep(i, N) {
-        int tmp    = 0;
-        visited[i] = 0;
-        cin >> tmp;
-        tmp--;
-        A[i] = tmp;
+        cin >> to[0][i];
+        to[0][i]--;
+    }
+    rep(i, D - 1) {
+        rep(j, N) {
+            to[i + 1][j] = to[i][to[i][j]];
+        }
     }
 
-    int now  = 0;
-    int loop = 0;
-    int cnt  = 0;
-    while (!visited[now] && cnt < K) {
-        visited[now] = cnt;
-        now          = A[now];
-        cnt++;
+    int v = 0;
+    for (int i = D - 1; i >= 0; i--) {
+        ll l = 1ll << i;
+        if (l <= K) {
+            v = to[i][v];
+            K -= l;
+        }
     }
-    if (cnt == K) {
-        cout << now + 1 << endl;
-        return 0;
-    }
-
-    loop = cnt - visited[now];
-    K -= cnt;
-    K = K % loop;
-    rep(i, K) {
-        now = A[now];
-    }
-    cout << now + 1 << endl;
-
+    cout << v + 1 << endl;
     return 0;
 }
