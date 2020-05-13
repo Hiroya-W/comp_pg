@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+
+#include <cctype>
 using namespace std;
 
 #define EPS (1e-7)
@@ -16,5 +18,16 @@ int dy[4] = {0, 1, 0, -1};
 typedef long long ll;
 
 int main() {
+    string s;
+    cin >> s;
+    int num = 0;
+    rep(i, 3) {
+        if (!isdigit(s[i])) {
+            cout << "error" << endl;
+            return 0;
+        }
+        num = num * 10 + (s[i] - '0');
+    }
+    cout << num * 2 << endl;
     return 0;
 }

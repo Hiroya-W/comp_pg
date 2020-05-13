@@ -1,4 +1,8 @@
 #include <bits/stdc++.h>
+
+#include <algorithm>
+#include <cctype>
+#include <vector>
 using namespace std;
 
 #define EPS (1e-7)
@@ -16,5 +20,11 @@ int dy[4] = {0, 1, 0, -1};
 typedef long long ll;
 
 int main() {
+    vector<int> a(6);
+    rep(i, 6) {
+        cin >> a[i];
+    }
+    sort(a.rbegin(), a.rend());
+    cout << a[2] << endl;
     return 0;
 }
