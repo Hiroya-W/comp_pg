@@ -1,0 +1,81 @@
+{
+    // Place your snippets for cpp here. Each snippet is defined under a snippet name and has a prefix, body and
+    // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+    // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+    // same ids are connected.
+    // Example:
+    // "Print to console": {
+    // 	"prefix": "log",
+    // 	"body": [
+    // 		"console.log('$1');",
+    // 		"$2"
+    // 	],
+    // 	"description": "Log output to console"
+    // }
+    "UnionFind": {
+        "prefix": "unionfind",
+        "body": [
+            "struct UnionFind {",
+            "\tvector<int> d;",
+            "\tUnionFind(int n): d(n,-1) {}",
+            "\tint find(int x) {",
+            "\t\tif (d[x] < 0) return x;",
+            "\t\treturn d[x] = find(d[x]);",
+            "\t}",
+            "\tbool unite(int x, int y) {",
+            "\t\tx = find(x); y = find(y);",
+            "\t\tif (x == y) return false;",
+            "\t\tif (d[x] > d[y]) swap(x,y);",
+            "\t\td[x] += d[y];",
+            "\t\td[y] = x;",
+            "\t\treturn true;",
+            "\t}",
+            "\tbool same(int x, int y) { return find(x) == find(y);}",
+            "\tint size(int x) { return -d[find(x)];}",
+            "};"
+        ],
+        "description": "impl UnionFind"
+    },
+    "AutoModInt": {
+        "prefix": "modint",
+        "body": [
+            "// auto mod int",
+            "// https://youtu.be/L8grWxBlIZ4?t=9858",
+            "// https://youtu.be/ERZuLAxZffQ?t=4807 : optimize",
+            "// https://youtu.be/8uowVvQ_-Mo?t=1329 : division",
+            "const int mod = 1000000007;",
+            "const int mod = 998244353;",
+            "struct mint {",
+            "\tll x; // typedef long long ll;",
+            "\tmint(ll x=0):x((x%mod+mod)%mod){}",
+            "\tmint operator-() const { return mint(-x);}",
+            "\tmint& operator+=(const mint a) {",
+            "\t\tif ((x += a.x) >= mod) x -= mod;",
+            "\t\treturn *this;",
+            "\t}",
+            "\tmint& operator-=(const mint a) {",
+            "\t\tif ((x += mod-a.x) >= mod) x -= mod;",
+            "\t\treturn *this;",
+            "\t}",
+            "\tmint& operator*=(const mint a) { (x *= a.x) %= mod; return *this;}",
+            "\tmint operator+(const mint a) const { return mint(*this) += a;}",
+            "\tmint operator-(const mint a) const { return mint(*this) -= a;}",
+            "\tmint operator*(const mint a) const { return mint(*this) *= a;}",
+            "\tmint pow(ll t) const {",
+            "\t\tif (!t) return 1;",
+            "\t\tmint a = pow(t>>1);",
+            "\t\ta *= a;",
+            "\t\tif (t&1) a *= *this;",
+            "\t\treturn a;",
+            "\t}",
+            "",
+            "\t// for prime mod",
+            "\tmint inv() const { return pow(mod-2);}",
+            "\tmint& operator/=(const mint a) { return *this *= a.inv();}",
+            "\tmint operator/(const mint a) const { return mint(*this) /= a;}",
+            "};",
+            "istream& operator>>(istream& is, const mint& a) { return is >> a.x;}",
+            "ostream& operator<<(ostream& os, const mint& a) { return os << a.x;}",
+        ]
+    }
+}

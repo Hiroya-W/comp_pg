@@ -1,0 +1,4 @@
+[codestyle]
+template_file='~/git-repos/comp_pg/template/attool_cpp_temp.cpp'
+workspace_dir='~/git-repos/comp_pg/'
+
