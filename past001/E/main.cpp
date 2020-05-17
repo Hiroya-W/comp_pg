@@ -2,6 +2,7 @@
 
 #include <algorithm>
 #include <cctype>
+#include <set>
 #include <vector>
 using namespace std;
 
@@ -20,30 +21,51 @@ int dy[4] = {0, 1, 0, -1};
 typedef long long ll;
 
 int main() {
-    int N;
-    cin >> N;
-    vector<int> A(N);
-    vector<int> chk(N + 1);
-    rep(i, N) {
-        cin >> A[i];
-        chk[A[i]]++;
-    }
-    int now = -1;
-    int old = -1;
-    rep(i, N + 1) {
-        if (chk[i] == 2) {
-            now = i;
-        }
-    }
-    if (now == -1) {
-        cout << "Correct" << endl;
-    } else {
-        rep(i, N + 1) {
-            if (chk[i] == 0) {
-                old = i;
+    int N, Q;
+    cin >> N >> Q;
+    bool ft[101][101] = {};
+    rep(i, Q) {
+        int op;
+        cin >> op;
+        if (op == 1) {
+            int a, b;
+            cin >> a >> b;
+            ft[a][b] = true;
+        } else if (op == 2) {
+            int a;
+            cin >> a;
+            rep(j, N + 1) {
+                if (ft[j][a]) {
+                    ft[a][j] = true;
+                }
+            }
+        } else if (op == 3) {
+            int a;
+            cin >> a;
+            set<int> candidate;
+            rep(j, N + 1) {
+                if (ft[a][j]) {
+                    rep(k, N + 1) {
+                        if (ft[j][k]) {
+                            candidate.insert(k);
+                        }
+                    }
+                }
+            }
+            for (int j : candidate) {
+                ft[a][j] = true;
             }
         }
-        cout << now << " " << old << endl;
+    }
+    rep1(i, N + 1) {
+        rep1(j, N + 1) {
+            if (i == j) {
+                cout << "N";
+                continue;
+            }
+            cout << (ft[i][j] ? "Y" : "N");
+        }
+        cout << endl;
     }
 
     return 0;
