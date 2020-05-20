@@ -22,25 +22,36 @@ int dy[4] = {0, 1, 0, -1};
 typedef long long ll;
 
 int main() {
-    string s;
-    cin >> s;
-    int l = 0;
-    vector<string> str;
-    for (int i = 1; i < s.size(); i++) {
-        if ('A' <= s[i] && s[i] <= 'Z') {
-            string sub = s.substr(l, i - l + 1);
-            transform(sub.begin(), sub.end(), sub.begin(), ::tolower);
-            str.push_back(sub);
-            i++;
-            l = i;
+    int N;
+    ll ans = -1e12;
+    cin >> N;
+    vector<vector<ll>> A(N, vector<ll>(N));
+    for (int i = 0; i < N - 1; i++) {
+        for (int j = i + 1; j < N; j++) {
+            cin >> A[i][j];
         }
     }
-    sort(str.begin(), str.end());
-    for (string S : str) {
-        S[0] = toupper(S[0]);
-        S[S.size() - 1] = toupper(S[S.size() - 1]);
-        cout << S;
+
+    // 3^N の3bit全探索
+    for (int bit = 0; bit < pow(3, N); bit++) {
+        ll tot = 0;
+        int tmp = bit;
+        vector<int> group(N);
+        // 社員pos に対して、グループを決定する
+        for (int pos = 0; pos < N; pos++) {
+            group[pos] = tmp % 3;
+            tmp /= 3;
+        }
+
+        for (int i = 0; i < N; i++) {
+            for (int j = i; j < N; j++) {
+                if (group[i] == group[j]) {
+                    tot += A[i][j];
+                }
+            }
+        }
+        ans = max(ans, tot);
     }
-    cout << endl;
+    cout << ans << endl;
     return 0;
 }
