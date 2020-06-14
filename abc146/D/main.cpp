@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+
+#include <vector>
 using namespace std;
 
 #define EPS (1e-7)
@@ -9,20 +11,44 @@ using namespace std;
 
 typedef long long ll;
 
+struct Edge {
+    int to, id;
+};
 
-void solve(long long N, std::vector<long long> a, std::vector<long long> b){
+vector<vector<Edge>> g;
+vector<int> ans;
 
+void dfs(int v, int c = -1, int p = -1) {
+    int k = 1;
+    rep(i, g[v].size()) {
+        int u = g[v][i].to, ei = g[v][i].id;
+        if (u == p) continue;
+        if (k == c) ++k;
+        ans[ei] = k;
+        ++k;
+        dfs(u, ans[ei], v);
+    }
 }
 
-int main(){
-    long long N;
-    scanf("%lld",&N);
-    std::vector<long long> a(N-1);
-    std::vector<long long> b(N-1);
-    for(int i = 0 ; i < N-1 ; i++){
-        scanf("%lld",&a[i]);
-        scanf("%lld",&b[i]);
+int main() {
+    int n;
+    cin >> n;
+    g.resize(n);
+    ans = vector<int>(n - 1);
+    rep(i, n - 1) {
+        int a, b;
+        cin >> a >> b;
+        --a, --b;
+        g[a].push_back(Edge{b, i});
+        g[b].push_back(Edge{a, i});
     }
-    solve(N, std::move(a), std::move(b));
+
+    dfs(0);
+    int mx = 0;
+    rep(i, n) mx = max(mx, int(g[i].size()));
+    cout << mx << endl;
+    rep(i, n - 1) {
+        cout << ans[i] << endl;
+    }
     return 0;
 }
