@@ -16,29 +16,19 @@ using namespace std;
 
 typedef long long ll;
 
-int main() {
+int main()
+{
     ll N;
     cin >> N;
-    N--;
     vector<int> ans;
-    if (N == 0) {
-        ans.push_back(0);
-    }
-    while (N != 0) {
+    while (N != 0)
+    {
+        N--;
         ans.push_back(N % 26);
         N /= 26;
     }
     reverse(ans.begin(), ans.end());
-    rep(i, ans.size() - 1) {
-        char c;
-        if (ans[i] == 0) {
-            c = ans[i] + 'a';
-        } else {
-            c = ans[i] - 1 + 'a';
-        }
-        cout << c;
-    }
-    char c = ans[ans.size() - 1] + 'a';
-    cout << c << endl;
+    rep(i, ans.size()) { cout << (char)(ans[i] + 'a'); }
+    cout << endl;
     return 0;
 }
