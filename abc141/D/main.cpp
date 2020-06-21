@@ -11,20 +11,29 @@ using namespace std;
 
 typedef long long ll;
 
-
-void solve(long long N, long long M, std::vector<long long> A){
-
-}
-
-int main(){
-    long long N;
-    scanf("%lld",&N);
-    long long M;
-    scanf("%lld",&M);
-    std::vector<long long> A(N);
-    for(int i = 0 ; i < N ; i++){
-        scanf("%lld",&A[i]);
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+    priority_queue<int> q;
+    rep(i, n)
+    {
+        int a;
+        cin >> a;
+        q.push(a);
     }
-    solve(N, M, std::move(A));
+    rep(i, m)
+    {
+        int a = q.top();
+        q.pop();
+        q.push(a / 2);
+    }
+    ll ans = 0;
+    rep(i, n)
+    {
+        ans += q.top();
+        q.pop();
+    }
+    cout << ans << endl;
     return 0;
 }
