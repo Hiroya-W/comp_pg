@@ -1,4 +1,6 @@
 #include <bits/stdc++.h>
+
+#include <vector>
 using namespace std;
 
 #define EPS (1e-7)
@@ -12,7 +14,29 @@ using namespace std;
 
 typedef long long ll;
 
-
-int main(){
+int main() {
+    int N, K;
+    cin >> N >> K;
+    vector<int> A(N);
+    rep(i, N) {
+        cin >> A[i];
+    }
+    int l = 0, r = 1e9;
+    while (r - l > 1) {
+        int x = (l + r) / 2;
+        auto f = [&](int x) {
+            ll now = 0;
+            rep(i, N) {
+                now += (A[i] - 1) / x;
+            }
+            return now <= K;
+        };
+        if (f(x)) {
+            r = x;
+        } else {
+            l = x;
+        }
+    }
+    cout << r << endl;
     return 0;
 }

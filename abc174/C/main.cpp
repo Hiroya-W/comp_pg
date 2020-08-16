@@ -13,5 +13,20 @@ using namespace std;
 typedef long long ll;
 
 int main() {
+    int K;
+    cin >> K;
+    int x = 7 % K;
+    set<int> s;
+    int cnt = 1;
+    while (s.count(x) == 0) {
+        if (x == 0) {
+            cout << cnt << endl;
+            return 0;
+        }
+        s.insert(x);
+        x = (x * 10 + 7) % K;
+        cnt++;
+    }
+    cout << "-1" << endl;
     return 0;
 }
