@@ -35,7 +35,7 @@ void dfs(int h, int w) {
         int nw = w + dw[i];
         int nh = h + dh[i];
         if (0 <= nw && nw < W && 0 <= nh && nh < H && maze[nh][nw] == '.') {
-            cout << nh << " " << nw << " " << cnt << endl;
+            // cout << nh << " " << nw << " " << cnt << endl;
             ans[nh][nw] = min(cnt, ans[nh][nw]);
             que_nuri.push(P(nh, nw));
             dfs(nh, nw);
@@ -48,16 +48,17 @@ int bfs() {
     que.push(P(Ch, Cw));
     ans[Ch][Cw] = 0;
 
-    while (!que.empty()) {
-        P p = que.front();
-        que.pop();
-        que_nuri.push(p);
-        ans[p.first][p.second] = min(ans[p.first][p.second], cnt);
-        cout << "ans" << p.first << " " << p.second << " " << ans[p.first][p.second] << endl;
-        // 歩けるだけ歩く
-        dfs(p.first, p.second);
+    while (!que.empty() || !que_nuri.empty()) {
+        while (!que.empty()) {
+            P p = que.front();
+            que.pop();
+            que_nuri.push(p);
+            ans[p.first][p.second] = min(ans[p.first][p.second], cnt);
+            // cout << "ans" << p.first << " " << p.second << " " << ans[p.first][p.second] << endl;
+            // 歩けるだけ歩く
+            dfs(p.first, p.second);
+        }
         // 塗りつぶしたやつの5x5の範囲を見ていく
-        cnt++;
         while (!que_nuri.empty()) {
             P q = que_nuri.front();
             que_nuri.pop();
@@ -74,6 +75,7 @@ int bfs() {
                 }
             }
         }
+        cnt++;
     }
     return ans[Dh][Dw];
 }
