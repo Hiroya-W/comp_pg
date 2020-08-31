@@ -1,0 +1,6 @@
+-Wall
+-Wextra
+-std=c++17
+-I....
+-L....
+-lboost_serialization
