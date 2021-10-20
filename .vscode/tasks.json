@@ -1,37 +1,47 @@
 {
-    "version": "2.0.0",
     "tasks": [
         {
-            "type": "shell",
-            "label": "g++-7 build active file",
-            "command": "/usr/bin/g++-7",
+            "type": "cppbuild",
+            "label": "C/C++: g++ アクティブなファイルのビルド",
+            "command": "/usr/local/bin/g++",
             "args": [
-                "-g",
+                "-Wall",
+                "-Wextra",
+                "-pedantic",
+                "-std=c++17",
+                "-O2",
+                "-Wshadow",
+                "-Wformat=2",
+                "-Wfloat-equal",
+                "-Wconversion",
+                "-Wlogical-op",
+                "-Wshift-overflow=2",
+                "-Wduplicated-cond",
+                "-Wcast-qual",
+                "-Wcast-align",
+                "-D_GLIBCXX_DEBUG",
+                "-D_GLIBCXX_DEBUG_PEDANTIC",
+                "-D_FORTIFY_SOURCE=2",
+                "-fsanitize=address",
+                "-fsanitize=undefined",
+                "-fno-sanitize-recover",
+                "-fstack-protector",
                 "${file}",
                 "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "${fileDirname}/a.out"
             ],
             "options": {
-                "cwd": "/usr/bin"
+                "cwd": "${fileDirname}"
             },
             "problemMatcher": [
                 "$gcc"
             ],
-            "group": "build"
-        },
-        {
-            "type": "shell",
-            "label": "g++ build active file",
-            "command": "/usr/bin/g++",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
-            "options": {
-                "cwd": "/usr/bin"
-            }
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "デバッガーによって生成されたタスク。"
         }
-    ]
+    ],
+    "version": "2.0.0"
 }
