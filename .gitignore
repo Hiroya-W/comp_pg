@@ -13,5 +13,5 @@ node_modules
 
 **/main.dSYM/**
 
-a.out
 main
+a.out
