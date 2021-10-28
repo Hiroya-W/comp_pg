@@ -33,5 +33,26 @@ inline bool chmin(T& a, T b) {
 }
 
 int main() {
+    int N;
+    cin >> N;
+    int dp[100000 + 10];
+    int a[100000 + 10];
+
+    rep(i, N) {
+        cin >> a[i];
+    }
+
+    fill(dp, dp + 100000 + 10, INF);
+
+    dp[0] = 0;
+    rep1(i, N) {
+        chmin(dp[i], dp[i - 1] + abs(a[i] - a[i - 1]));
+        if (i > 1) {
+            chmin(dp[i], dp[i - 2] + abs(a[i] - a[i - 2]));
+        }
+    }
+
+    cout << dp[N - 1] << endl;
+
     return 0;
 }
