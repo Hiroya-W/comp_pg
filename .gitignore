@@ -12,6 +12,7 @@ Cargo.lock
 node_modules
 
 **/main.dSYM/**
+**/a.out.dSYM/**
 
 main
 a.out

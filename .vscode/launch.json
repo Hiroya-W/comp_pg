@@ -4,18 +4,19 @@
     // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "g++ - アクティブ ファイルのビルドとデバッグ",
-            "type": "cppdbg",
+            "type": "lldb",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${fileDirname}/a.out",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "externalConsole": false,
+            // "externalConsole": false,
             "MIMode": "lldb",
-            "preLaunchTask": "C/C++: g++ アクティブなファイルのビルド"
+            "preLaunchTask": "C/C++: g++ debug"
         }
     ]
 }

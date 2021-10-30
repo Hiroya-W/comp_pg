@@ -41,6 +41,28 @@
                 "isDefault": true
             },
             "detail": "デバッガーによって生成されたタスク。"
+        },
+        {
+            "type": "cppbuild",
+            "label": "C/C++: g++ debug",
+            "command": "/usr/local/bin/g++",
+            "args": [
+                "-g",
+                "${file}",
+                "-o",
+                "${fileDirname}/a.out"
+            ],
+            "options": {
+                "cwd": "${fileDirname}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "デバッガーによって生成されたタスク。"
         }
     ],
     "version": "2.0.0"
