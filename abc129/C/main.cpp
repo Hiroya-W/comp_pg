@@ -13,6 +13,8 @@ using namespace std;
 int dx[4] = {1, 0, -1, 0};
 int dy[4] = {0, 1, 0, -1};
 
+long long MOD = 1000000007;
+
 typedef long long ll;
 
 template<class T>
@@ -33,5 +35,32 @@ inline bool chmin(T& a, T b) {
 }
 
 int main() {
+    int N, M;
+    cin >> N >> M;
+    ll dp[100000 + 10];
+    bool can_step_in[100000 + 10];
+    fill(dp, dp + 100000 + 10, 0);
+    fill(can_step_in, can_step_in + 100000 + 10, true);
+
+    rep(i, M) {
+        int a;
+        cin >> a;
+        can_step_in[a] = false;
+    }
+
+    dp[0] = 1;
+
+    rep1(i, N + 1) {
+        if (!can_step_in[i]) continue;
+        if (can_step_in[i - 1]) {
+            dp[i] = (dp[i] + dp[i - 1]) % MOD;
+        }
+        if (i > 1 && can_step_in[i - 2]) {
+            dp[i] = (dp[i] + dp[i - 2]) % MOD;
+        }
+    }
+
+    cout << dp[N] << endl;
+
     return 0;
 }
