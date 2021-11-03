@@ -32,6 +32,30 @@ inline bool chmin(T& a, T b) {
     return 0;
 }
 
+ll dp[101][100001] = {0};
+ll weight[100], value[100];
+
 int main() {
+    int N, W;
+    cin >> N >> W;
+    rep(i, N) {
+        int w, v;
+        cin >> w >> v;
+        weight[i] = w;
+        value[i] = v;
+    }
+
+    rep(i, N) {
+        rep(sum_w, W + 1) {
+            // 商品i を選ぶ
+            if (sum_w - weight[i] >= 0) {
+                chmax(dp[i + 1][sum_w], dp[i][sum_w - weight[i]] + value[i]);
+            }
+            // 商品i を選ばない
+            chmax(dp[i + 1][sum_w], dp[i][sum_w]);
+        }
+    }
+    cout << dp[N][W] << endl;
+
     return 0;
 }
