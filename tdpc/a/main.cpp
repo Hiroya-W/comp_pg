@@ -32,6 +32,47 @@ inline bool chmin(T& a, T b) {
     return 0;
 }
 
+ll dp[101][10000 + 1] = {0};
+int point[100];
+
 int main() {
+    int N;
+    cin >> N;
+    rep(i, N) {
+        int p;
+        cin >> p;
+        point[i] = p;
+    }
+
+    rep(i, 101) {
+        rep(j, 10001) {
+            dp[i][j] = -1;
+        }
+    }
+
+    dp[0][0] = 1;
+
+    rep(i, N) {
+        rep(j, 10001) {
+            // 解いた時
+            if (j - point[i] >= 0 && dp[i][j - point[i]] != -1) {
+                dp[i + 1][j] = 1;
+            }
+            // 解けなかった時
+            if (dp[i][j] != -1) {
+                dp[i + 1][j] = 1;
+            }
+        }
+    }
+    int sum = 0;
+
+    rep(i, 10001) {
+        if (dp[N][i] == 1) {
+            sum++;
+        }
+    }
+
+    cout << sum << endl;
+
     return 0;
 }
