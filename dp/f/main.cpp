@@ -32,6 +32,38 @@ inline bool chmin(T& a, T b) {
     return 0;
 }
 
+int dp[3001][3001] = {0};
+
 int main() {
+    string s, t;
+    cin >> s >> t;
+
+    rep(i, s.size()) {
+        rep(j, t.size()) {
+            if (s[i] == t[j]) {
+                chmax(dp[i + 1][j + 1], dp[i][j] + 1);
+            } else {
+                chmax(dp[i + 1][j + 1], dp[i + 1][j]);
+                chmax(dp[i + 1][j + 1], dp[i][j + 1]);
+            }
+        }
+    }
+
+    string ans = "";
+    int i = s.size(), j = t.size();
+    while (i > 0 && j > 0) {
+        if (s[i - 1] == t[j - 1]) {
+            ans = s[i - 1] + ans;
+            i--;
+            j--;
+        } else if (dp[i][j] == dp[i - 1][j]) {
+            i--;
+        } else if (dp[i][j] == dp[i][j - 1]) {
+            j--;
+        }
+    }
+
+    cout << ans << endl;
+
     return 0;
 }
