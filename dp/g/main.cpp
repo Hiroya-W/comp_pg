@@ -32,6 +32,43 @@ inline bool chmin(T& a, T b) {
     return 0;
 }
 
+using Graph = vector<vector<int>>;
+
+int dp[100000];
+
+int rec(Graph& g, int v) {
+    if (dp[v] != -1) return dp[v];
+
+    int res = 0;
+    for (auto nv : g[v]) {
+        chmax(res, rec(g, nv) + 1);
+    }
+    dp[v] = res;
+    return dp[v];
+}
+
 int main() {
+    int N, M;
+    cin >> N >> M;
+
+    Graph g(N);
+
+    rep(i, M) {
+        int x, y;
+        cin >> x >> y;
+        g[x - 1].push_back(y - 1);
+    }
+
+    rep(i, N) {
+        dp[i] = -1;
+    }
+
+    int res = 0;
+    rep(v, N) {
+        chmax(res, rec(g, v));
+    }
+
+    cout << res << endl;
+
     return 0;
 }
