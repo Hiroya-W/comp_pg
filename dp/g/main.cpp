@@ -2,7 +2,7 @@
 using namespace std;
 
 #define EPS             (1e-7)
-#define INF             (1e9)
+#define INF             (1e12)
 #define PI              (acos(-1))
 #define deg_to_rad(deg) (((deg) / 360) * 2 * M_PI)
 #define rad_to_deg(rad) (((rad) / 2 / M_PI) * 360)
@@ -32,43 +32,62 @@ inline bool chmin(T& a, T b) {
     return 0;
 }
 
-using Graph = vector<vector<int>>;
+struct Edge {
+    int to;
+};
+
+using Graph = vector<vector<Edge>>;
 
 int dp[100000];
 
-int rec(Graph& g, int v) {
-    if (dp[v] != -1) return dp[v];
-
-    int res = 0;
-    for (auto nv : g[v]) {
-        chmax(res, rec(g, nv) + 1);
+void topo_sort(const Graph& g) {
+    // 入次数を数える
+    int n = (int)g.size();
+    vector<int> in(n, 0);
+    rep(i, n) {
+        for (auto e : g[i]) {
+            in[e.to]++;
+        }
     }
-    dp[v] = res;
-    return dp[v];
+
+    // 入次数が0のノードを取り出す
+    queue<int> q;
+    rep(i, n) {
+        if (in[i] == 0) {
+            q.push(i);
+        }
+    }
+
+    // 入次数が0のノードを取り出して、そのノードから出ていくエッジを削除していく
+    while (!q.empty()) {
+        int v = q.front();
+        q.pop();
+        for (auto e : g[v]) {
+            in[e.to]--;
+            if (in[e.to] == 0) {
+                q.push(e.to);
+                chmax(dp[e.to], dp[v] + 1);
+            }
+        }
+    }
 }
 
 int main() {
-    int N, M;
-    cin >> N >> M;
-
-    Graph g(N);
-
-    rep(i, M) {
-        int x, y;
-        cin >> x >> y;
-        g[x - 1].push_back(y - 1);
+    int V, E;
+    cin >> V >> E;
+    Graph g(V);
+    rep(i, E) {
+        int a, b;
+        cin >> a >> b;
+        g[a - 1].push_back(Edge {b - 1});
     }
 
-    rep(i, N) {
-        dp[i] = -1;
+    topo_sort(g);
+    int ans = 0;
+    rep(i, 100000) {
+        chmax(ans, dp[i]);
     }
 
-    int res = 0;
-    rep(v, N) {
-        chmax(res, rec(g, v));
-    }
-
-    cout << res << endl;
-
+    cout << ans << endl;
     return 0;
 }
