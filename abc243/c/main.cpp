@@ -33,5 +33,44 @@ inline bool chmin(T& a, T b) {
 }
 
 int main() {
+    int N;
+    cin >> N;
+    vector<int> X(N), Y(N);
+    rep(i, N) {
+        cin >> X[i] >> Y[i];
+    }
+    string S;
+    cin >> S;
+
+    map<int, int> right_min, left_max;
+    set<int> y_set;
+
+    rep(i, N) {
+        if (S[i] == 'R') {
+            if (right_min.count(Y[i])) {
+                chmin(right_min[Y[i]], X[i]);
+            } else {
+                right_min[Y[i]] = X[i];
+            }
+        } else {
+            if (left_max.count(Y[i])) {
+                chmax(left_max[Y[i]], X[i]);
+            } else {
+                left_max[Y[i]] = X[i];
+            }
+        }
+        y_set.insert(Y[i]);
+    }
+
+    for (auto yi : y_set) {
+        if (right_min.count(yi) && left_max.count(yi)) {
+            if (right_min[yi] < left_max[yi]) {
+                cout << "Yes" << endl;
+                return 0;
+            }
+        }
+    }
+    cout << "No" << endl;
+
     return 0;
 }
