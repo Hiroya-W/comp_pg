@@ -7,6 +7,15 @@ poetry install
 npm install
 ```
 
+## initial setup for atcoder-cli
+
+```fish
+cp -r template/cpp (npx acc config-dir)
+npx acc config default-template cpp
+npx acc config default-test-dirname-format test
+npx acc config default-task-choice all
+```
+
 ## how to use
 
 Pythonの仮想環境を有効にする。
