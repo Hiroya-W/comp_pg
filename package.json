@@ -1,0 +1,22 @@
+{
+  "name": "comp_pg",
+  "version": "1.0.0",
+  "description": "## Setup",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/Hiroya-W/comp_pg.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Hiroya-W/comp_pg/issues"
+  },
+  "homepage": "https://github.com/Hiroya-W/comp_pg#readme",
+  "dependencies": {
+    "atcoder-cli": "^2.2.0"
+  }
+}
