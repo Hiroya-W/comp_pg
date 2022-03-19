@@ -33,5 +33,12 @@ inline bool chmin(T& a, T b) {
 }
 
 int main() {
+    ll N;
+    ll res = 0;
+    cin >> N;
+    for (ll x = 1000; x <= N; x *= 1000) {
+        res += N - x + 1;
+    }
+    cout << res << endl;
     return 0;
 }
