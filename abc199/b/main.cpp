@@ -33,5 +33,24 @@ inline bool chmin(T& a, T b) {
 }
 
 int main() {
+    int N;
+    int maxA = 0, minB = 1001;
+    cin >> N;
+    rep(i, N) {
+        int A;
+        cin >> A;
+        chmax(maxA, A);
+    }
+    rep(i, N) {
+        int B;
+        cin >> B;
+        chmin(minB, B);
+    }
+
+    if (maxA > minB) {
+        cout << "0" << endl;
+    } else {
+        cout << minB - maxA + 1 << endl;
+    }
     return 0;
 }
