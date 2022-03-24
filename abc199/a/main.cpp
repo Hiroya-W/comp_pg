@@ -33,5 +33,13 @@ inline bool chmin(T& a, T b) {
 }
 
 int main() {
+    int A, B, C;
+    cin >> A >> B >> C;
+    if(A * A + B * B < C * C){
+        cout << "Yes" << endl;
+    }
+    else{
+        cout << "No" << endl;
+    }
     return 0;
 }
