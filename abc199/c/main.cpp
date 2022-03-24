@@ -33,5 +33,32 @@ inline bool chmin(T& a, T b) {
 }
 
 int main() {
+    int N;
+    string S;
+    int Q;
+    cin >> N >> S >> Q;
+
+    bool flip = false;
+    for (int i = 0; i < Q; i++) {
+        int T, A, B;
+        cin >> T >> A >> B;
+        A--;
+        B--;
+        if (T == 1) {
+            if (flip) {
+                A = (A + N) % (2 * N);
+                B = (B + N) % (2 * N);
+            }
+            swap(S[A], S[B]);
+        }else{
+            flip = !flip;
+        }
+    }
+    if (flip) {
+        cout << S.substr(N) << S.substr(0, N) << endl;
+    } else {
+        cout << S << endl;
+    }
+
     return 0;
 }
